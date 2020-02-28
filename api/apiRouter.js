@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const Users = require('../users/userModel.js');
-const { jwtSecret } = require('../config/secrets.js');
-const restricted = require('./restrcitedMiddleware');
+const { jwtSecret } = require('../config/secrets');
+const restricted = require('./restrictedMiddleware');
 
 
 const usersRouter = require('../users/userRouter.js');
-router.use('/users', restricted, checkDepartment('hr'),  usersRouter); 
+router.use('/users',  restricted,  usersRouter); 
 
 function checkDepartment(department) {
     return (req, res, next) => {
